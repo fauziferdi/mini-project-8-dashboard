@@ -1,19 +1,40 @@
 import React from "react";
+import { authLogin } from "../redux/slices/AuthSlice";
+import { useDispatch, useSelector } from "react-redux";
+
+import useForm from "../hooks/useForms";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const LoginFormComponent = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { loading, error } = useSelector((state) => state.auth);
+  const { form, handleChange } = useForm({
+    email: "",
+    password: "",
+  });
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      await dispatch(authLogin(form));
+      navigate("/dashboard");
+    } catch (err) {
+      console.error("Login gagal:", err);
+    }
+  };
+
   return (
     <>
       <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
         <div class="mx-auto max-w-lg text-center">
-          <h1 class="text-2xl font-bold sm:text-3xl">Get started today!</h1>
-
-          <p class="mt-4 text-gray-500">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et libero
-            nulla eaque error neque ipsa culpa autem, at itaque nostrum!
-          </p>
+          <h1 class="text-2xl font-bold sm:text-3xl">LOGIN</h1>
         </div>
 
-        <form action="#" class="mx-auto mb-0 mt-8 max-w-md space-y-4">
+        <form
+          onSubmit={handleSubmit}
+          class="mx-auto mb-0 mt-8 max-w-md space-y-4"
+        >
           <div>
             <label for="email" class="sr-only">
               Email
@@ -22,6 +43,10 @@ const LoginFormComponent = () => {
             <div class="relative">
               <input
                 type="email"
+                name="email"
+                id="email"
+                value={form.email}
+                onChange={handleChange}
                 class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                 placeholder="Enter email"
               />
@@ -53,6 +78,10 @@ const LoginFormComponent = () => {
             <div class="relative">
               <input
                 type="password"
+                name="password"
+                id="password"
+                value={form.password}
+                onChange={handleChange}
                 class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                 placeholder="Enter password"
               />
@@ -83,13 +112,8 @@ const LoginFormComponent = () => {
           </div>
 
           <div class="flex items-center justify-between">
-            <p class="text-sm text-gray-500">
-              No account?
-              <a class="underline" href="#">
-                Sign up
-              </a>
-            </p>
-
+            {loading && <div>Loading...</div>}
+            {error && <div>{error}</div>}
             <button
               type="submit"
               class="inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white"

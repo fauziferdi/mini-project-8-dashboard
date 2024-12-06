@@ -1,7 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom"; // Import Link dari react-router-dom
-
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { authLogout } from "../redux/slices/AuthSlice";
 const SidebarComponent = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { loading } = useSelector((state) => state.auth);
+
+  const handleLogout = async () => {
+    await dispatch(authLogout());
+    navigate("/login");
+  };
+
   return (
     <div className="flex flex-col justify-between h-screen bg-white border-e">
       <div className="px-4 py-6">
@@ -86,14 +96,13 @@ const SidebarComponent = () => {
                 </li>
 
                 <li>
-                  <form action="#">
-                    <button
-                      type="submit"
-                      className="w-full rounded-lg px-4 py-2 text-sm font-medium text-gray-500 [text-align:_inherit] hover:bg-gray-100 hover:text-gray-700"
-                    >
-                      Logout
-                    </button>
-                  </form>
+                  <button
+                    onClick={() => handleLogout()}
+                    disabled={loading}
+                    className="w-full rounded-lg px-4 py-2 text-sm font-medium text-gray-500 [text-align:_inherit] hover:bg-gray-100 hover:text-gray-700"
+                  >
+                    Logout
+                  </button>
                 </li>
               </ul>
             </details>

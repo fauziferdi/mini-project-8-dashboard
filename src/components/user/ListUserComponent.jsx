@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-
+import { Link } from "react-router-dom"; // Import Link
 import { MdEdit } from "react-icons/md";
 import { FaTrash } from "react-icons/fa";
 import { fetchAllUsers } from "../../redux/slices/UserSlice";
@@ -35,15 +35,15 @@ const ListUserComponent = () => {
           <h1 class="text-2xl font-bold sm:text-3xl">List User</h1>
         </div>
         <div>
-          <a
+          <Link // Ubah menjadi Link
             class="inline-block rounded border border-green-600
-            bg-green-600 px-3 py-1 text-sm font-medium text-white 
-            hover:bg-transparent hover:text-green-600 focus:outline-none
-            focus:ring active:text-green-500"
-            href="#"
+              bg-green-600 px-3 py-1 text-sm font-medium text-white 
+              hover:bg-transparent hover:text-green-600 focus:outline-none
+              focus:ring active:text-green-500"
+            to="/user/add" // Ganti dengan path untuk menambah user
           >
             Tambah
-          </a>
+          </Link>
         </div>
       </div>
 
@@ -75,8 +75,8 @@ const ListUserComponent = () => {
 
           <tbody class="divide-y divide-gray-200">
             {users.map((user, index) => (
-              <tr>
-                <td class="whitespace-nowrap px-4 py-2  text-gray-900">
+              <tr key={user.id}>
+                <td class="whitespace-nowrap px-4 py-2 text-gray-900">
                   {index + 1}
                 </td>
                 <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-700">
@@ -95,20 +95,19 @@ const ListUserComponent = () => {
                     alt=""
                   />
                 </td>
-
                 <td className="flex items-center gap-2 p-4">
-                  <a
+                  <Link // Ubah menjadi Link
                     className="text-yellow-500 hover:text-yellow-700"
-                    href="user/edit"
+                    to={`/user/edit/${user.id}`} // Ganti dengan path untuk edit user, sertakan user ID
                   >
                     <MdEdit />
-                  </a>
-                  <a
+                  </Link>
+                  <Link // Ubah menjadi Link
                     className="text-red-500 hover:text-red-700"
-                    href="user/delete"
+                    to={`/user/delete/${user.id}`} // Ganti dengan path untuk delete user, sertakan user ID
                   >
                     <FaTrash />
-                  </a>
+                  </Link>
                 </td>
               </tr>
             ))}
