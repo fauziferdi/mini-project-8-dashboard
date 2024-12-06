@@ -2,11 +2,11 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const api = import.meta.env.VITE_API_URL;
-const token = import.meta.env.VITE_API_TOKEN;
 
 export const fetchAllUsers = createAsyncThunk(
   "user/fetchAllUsers",
   async () => {
+    const token = localStorage.getItem("token");
     const response = await axios.get(`${api}/users?page=1&limit=8`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -19,15 +19,17 @@ export const fetchAllUsers = createAsyncThunk(
 
 const initialState = {
   users: [],
+  user: {},
   loading: false,
   error: null,
 };
 
-const UserSlice = createSlice({
+const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
+    // Fetch all users
     builder.addCase(fetchAllUsers.pending, (state) => {
       state.loading = true;
       state.error = null;
@@ -35,7 +37,6 @@ const UserSlice = createSlice({
     builder.addCase(fetchAllUsers.fulfilled, (state, action) => {
       state.loading = false;
       state.users = action.payload;
-      console.log(state.users);
     });
     builder.addCase(fetchAllUsers.rejected, (state, action) => {
       state.loading = false;
@@ -44,4 +45,4 @@ const UserSlice = createSlice({
   },
 });
 
-export default UserSlice.reducer;
+export default userSlice.reducer;

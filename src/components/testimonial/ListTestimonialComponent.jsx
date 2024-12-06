@@ -1,9 +1,13 @@
 import React, { useEffect } from "react";
 import { MdEdit } from "react-icons/md";
 import { FaTrash } from "react-icons/fa";
-import { fetchAllTestimonial } from "../../redux/slices/TestimonialSlice";
+import {
+  fetchAllTestimonial,
+  deleteTestimonial,
+} from "../../redux/slices/TestimonialSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ListTestimonialComponent = () => {
   const dispatch = useDispatch();
@@ -16,6 +20,29 @@ const ListTestimonialComponent = () => {
     console.log(testimonials);
   }, [dispatch]);
 
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(deleteTestimonial(id))
+          .then(() => {
+            dispatch(fetchAllTestimonial());
+            Swal.fire("Deleted!", "Your file has been deleted.", "success");
+          })
+          .catch((error) => {
+            Swal.fire("Error!", "Failed to delete the blog.", "error");
+            console.error("Error deleting blog:", error);
+          });
+      }
+    });
+  };
   if (loading) {
     return (
       <div className="d-flex justify-content-center align-items-center vh-100 ">
@@ -39,7 +66,7 @@ const ListTestimonialComponent = () => {
         <div>
           <Link
             className="inline-block px-3 py-1 text-sm font-medium text-white bg-green-600 border border-green-600 rounded hover:bg-transparent hover:text-green-600 focus:outline-none focus:ring active:text-green-500"
-            to="/testimoni/add"
+            to="/testimonial/add"
           >
             Tambah
           </Link>
@@ -99,16 +126,16 @@ const ListTestimonialComponent = () => {
                 <td className="flex gap-3 px-6 py-4 text-right ">
                   <Link
                     className="text-yellow-500 hover:text-yellow-700"
-                    to={`/testimoni/edit/${testimoni.id}`}
+                    to={`/testimonial/edit/${testimoni.id}`}
                   >
                     <MdEdit />
                   </Link>
-                  <Link
+                  <button
                     className="text-red-500 hover:text-red-700"
-                    to={`/testimoni/delete/${testimoni.id}`}
+                    onClick={() => handleDelete(testimoni.id)}
                   >
                     <FaTrash />
-                  </Link>
+                  </button>
                 </td>
               </tr>
             ))}

@@ -3,7 +3,7 @@ import { authLogin } from "../redux/slices/AuthSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 import useForm from "../hooks/useForms";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const LoginFormComponent = () => {
   const dispatch = useDispatch();

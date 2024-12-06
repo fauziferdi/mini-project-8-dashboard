@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-
 import { MdEdit } from "react-icons/md";
 import { FaTrash } from "react-icons/fa";
-import { fetchAllBlog } from "../../redux/slices/BlogSlice";
+import { fetchAllBlog, deleteBlog } from "../../redux/slices/BlogSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ListBlogComponent = () => {
   const dispatch = useDispatch();
@@ -12,8 +12,31 @@ const ListBlogComponent = () => {
 
   useEffect(() => {
     dispatch(fetchAllBlog());
-    console.log(blogs);
   }, [dispatch]);
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(deleteBlog(id))
+          .then(() => {
+            dispatch(fetchAllBlog());
+            Swal.fire("Deleted!", "Your file has been deleted.", "success");
+          })
+          .catch((error) => {
+            Swal.fire("Error!", "Failed to delete the blog.", "error");
+            console.error("Error deleting blog:", error);
+          });
+      }
+    });
+  };
 
   if (loading) {
     return (
@@ -98,12 +121,12 @@ const ListBlogComponent = () => {
                   >
                     <MdEdit />
                   </Link>
-                  <Link
+                  <button
                     className="text-red-500 hover:text-red-700"
-                    to={`/blog/delete/${blog.id}`}
+                    onClick={() => handleDelete(blog.id)}
                   >
                     <FaTrash />
-                  </Link>
+                  </button>
                 </td>
               </tr>
             ))}

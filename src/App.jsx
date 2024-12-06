@@ -14,6 +14,8 @@ import TestimonialPage from "./pages/TestimonialPage";
 import LoginFormComponent from "./components/LoginFormComponent";
 import { useSelector } from "react-redux";
 import "flowbite";
+import ProfilePage from "./pages/ProfilePage";
+import ContactPage from "./pages/ContactPage";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -23,10 +25,12 @@ function App() {
     const token = localStorage.getItem("token");
     if (token) {
       setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
     }
   }, [auth]);
 
-  const PrivateRoute = ({ children }) => {
+  const ProtectedRoute = ({ children }) => {
     return isAuthenticated ? children : <Navigate to="/login" />;
   };
 
@@ -43,121 +47,114 @@ function App() {
                 <Route
                   path="/"
                   element={
-                    <PrivateRoute>
+                    <ProtectedRoute>
                       <DashboardPage />
-                    </PrivateRoute>
+                    </ProtectedRoute>
                   }
                 />
                 <Route
                   path="/dashboard"
                   element={
-                    <PrivateRoute>
+                    <ProtectedRoute>
                       <DashboardPage />
-                    </PrivateRoute>
+                    </ProtectedRoute>
                   }
                 />
                 <Route
                   path="/portofolio"
                   element={
-                    <PrivateRoute>
+                    <ProtectedRoute>
                       <PortofolioPage />
-                    </PrivateRoute>
+                    </ProtectedRoute>
                   }
                 />
                 <Route
                   path="/blog"
                   element={
-                    <PrivateRoute>
+                    <ProtectedRoute>
                       <BlogPage />
-                    </PrivateRoute>
+                    </ProtectedRoute>
                   }
                 />
                 <Route
                   path="/user"
                   element={
-                    <PrivateRoute>
+                    <ProtectedRoute>
                       <UserPage />
-                    </PrivateRoute>
+                    </ProtectedRoute>
                   }
                 />
                 <Route
                   path="/testimonial"
                   element={
-                    <PrivateRoute>
+                    <ProtectedRoute>
                       <TestimonialPage />
-                    </PrivateRoute>
+                    </ProtectedRoute>
                   }
                 />
                 <Route
                   path="/portofolio/add"
                   element={
-                    <PrivateRoute>
+                    <ProtectedRoute>
                       <PortofolioPage />
-                    </PrivateRoute>
+                    </ProtectedRoute>
                   }
                 />
                 <Route
                   path="/portofolio/edit/:id"
                   element={
-                    <PrivateRoute>
+                    <ProtectedRoute>
                       <PortofolioPage />
-                    </PrivateRoute>
+                    </ProtectedRoute>
                   }
                 />
                 <Route
                   path="/blog/add"
                   element={
-                    <PrivateRoute>
+                    <ProtectedRoute>
                       <BlogPage />
-                    </PrivateRoute>
+                    </ProtectedRoute>
                   }
                 />
                 <Route
                   path="/blog/edit/:id"
                   element={
-                    <PrivateRoute>
+                    <ProtectedRoute>
                       <BlogPage />
-                    </PrivateRoute>
+                    </ProtectedRoute>
                   }
                 />
-                <Route
-                  path="/user/:id"
-                  element={
-                    <PrivateRoute>
-                      <UserPage />
-                    </PrivateRoute>
-                  }
-                />
-                <Route
-                  path="/user/edit/:id"
-                  element={
-                    <PrivateRoute>
-                      <UserPage />
-                    </PrivateRoute>
-                  }
-                />
-                <Route
-                  path="/user/add"
-                  element={
-                    <PrivateRoute>
-                      <UserPage />
-                    </PrivateRoute>
-                  }
-                />
+
                 <Route
                   path="/testimonial/add"
                   element={
-                    <PrivateRoute>
+                    <ProtectedRoute>
                       <TestimonialPage />
-                    </PrivateRoute>
+                    </ProtectedRoute>
                   }
                 />
                 <Route
                   path="/testimonial/edit/:id"
                   element={
-                    <PrivateRoute>
+                    <ProtectedRoute>
                       <TestimonialPage />
-                    </PrivateRoute>
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/profile"
+                  element={
+                    <ProtectedRoute>
+                      <ProfilePage />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/contact"
+                  element={
+                    <ProtectedRoute>
+                      <ContactPage />
+                    </ProtectedRoute>
                   }
                 />
               </Routes>

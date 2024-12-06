@@ -1,16 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { authLogout } from "../redux/slices/AuthSlice";
+import { authLogout, fetchUserAuth } from "../redux/slices/AuthSlice";
 const SidebarComponent = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { loading } = useSelector((state) => state.auth);
+  const { profile, loading } = useSelector((state) => state.auth);
 
   const handleLogout = async () => {
-    await dispatch(authLogout());
-    navigate("/login");
+    try {
+      await dispatch(authLogout());
+      localStorage.removeItem("token");
+      navigate("/login");
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
   };
+
+  useEffect(() => {
+    dispatch(fetchUserAuth());
+  }, [dispatch]);
 
   return (
     <div className="flex flex-col justify-between h-screen bg-white border-e">
@@ -65,6 +74,15 @@ const SidebarComponent = () => {
           </li>
 
           <li>
+            <Link
+              to="/contact"
+              className="block px-4 py-2 text-sm font-medium text-gray-500 rounded-lg hover:bg-gray-100 hover:text-gray-700"
+            >
+              Contact
+            </Link>
+          </li>
+
+          <li>
             <details className="group [&_summary::-webkit-details-marker]:hidden">
               <summary className="flex items-center justify-between px-4 py-2 text-gray-500 rounded-lg cursor-pointer hover:bg-gray-100 hover:text-gray-700">
                 <span className="text-sm font-medium"> Account </span>
@@ -88,7 +106,7 @@ const SidebarComponent = () => {
               <ul className="px-4 mt-2 space-y-1">
                 <li>
                   <Link
-                    to="/account/details"
+                    to="/profile"
                     className="block px-4 py-2 text-sm font-medium text-gray-500 rounded-lg hover:bg-gray-100 hover:text-gray-700"
                   >
                     Details
@@ -116,16 +134,16 @@ const SidebarComponent = () => {
           className="flex items-center gap-2 p-4 bg-white hover:bg-gray-50"
         >
           <img
-            alt=""
-            src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+            alt={profile?.name}
+            src={profile?.photo}
             className="object-cover rounded-full size-10"
           />
 
           <div>
-            <p className="text-xs">
-              <strong className="block font-medium">Fauzi Ferdiansyah</strong>
+            <p className="text-xs font-medium text-gray-500">
+              <strong className="block font-medium">{profile?.name}</strong>
 
-              <span> fauziferdiansyah@gmail.com </span>
+              <span>{profile?.title} </span>
             </p>
           </div>
         </Link>

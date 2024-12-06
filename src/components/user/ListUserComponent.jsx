@@ -63,9 +63,6 @@ const ListUserComponent = () => {
               <th scope="col" className="px-6 py-3">
                 Foto Profil
               </th>
-              <th scope="col" className="px-6 py-3">
-                action
-              </th>
             </tr>
           </thead>
           <tbody>
@@ -89,20 +86,6 @@ const ListUserComponent = () => {
                     src={user.photo}
                     alt=""
                   />
-                </td>
-                <td className="flex gap-3 px-6 py-4 text-right ">
-                  <Link
-                    className="text-yellow-500 hover:text-yellow-700"
-                    to={`/user/edit/${user.id}`}
-                  >
-                    <MdEdit />
-                  </Link>
-                  <Link
-                    className="text-red-500 hover:text-red-700"
-                    to={`/user/delete/${user.id}`}
-                  >
-                    <FaTrash />
-                  </Link>
                 </td>
               </tr>
             ))}

@@ -13,7 +13,7 @@ const useForm = (initialValue) => {
   const handleFileChange = (e) => {
     setForm({
       ...form,
-      image: e.target.files[0],
+      [e.target.name]: e.target.files[0],
     });
   };
 

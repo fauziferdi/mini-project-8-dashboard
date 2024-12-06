@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import ListTestimonialComponent from "../components/testimonial/LisTestimonialComponent";
+import ListTestimonialComponent from "../components/testimonial/ListTestimonialComponent";
 import FormTestimonialComponent from "../components/testimonial/FormTestimonialComponent";
 
 const TestimonialPage = () => {
