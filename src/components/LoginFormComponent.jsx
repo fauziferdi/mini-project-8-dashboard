@@ -26,43 +26,43 @@ const LoginFormComponent = () => {
 
   return (
     <>
-      <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
-        <div class="mx-auto max-w-lg text-center">
-          <h1 class="text-2xl font-bold sm:text-3xl">LOGIN</h1>
+      <div className="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
+        <div className="max-w-lg mx-auto text-center">
+          <h1 className="text-2xl font-bold sm:text-3xl">LOGIN</h1>
         </div>
 
         <form
           onSubmit={handleSubmit}
-          class="mx-auto mb-0 mt-8 max-w-md space-y-4"
+          className="max-w-md mx-auto mt-8 mb-0 space-y-4"
         >
           <div>
-            <label for="email" class="sr-only">
+            <label htmlFor="email" className="sr-only">
               Email
             </label>
 
-            <div class="relative">
+            <div className="relative">
               <input
                 type="email"
                 name="email"
                 id="email"
                 value={form.email}
                 onChange={handleChange}
-                class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                className="w-full p-4 text-sm border-gray-200 rounded-lg shadow-sm pe-12"
                 placeholder="Enter email"
               />
 
-              <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
+              <span className="absolute inset-y-0 grid px-4 end-0 place-content-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="size-4 text-gray-400"
+                  className="text-gray-400 size-4"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
                   />
                 </svg>
@@ -71,39 +71,39 @@ const LoginFormComponent = () => {
           </div>
 
           <div>
-            <label for="password" class="sr-only">
+            <label htmlFor="password" className="sr-only">
               Password
             </label>
 
-            <div class="relative">
+            <div className="relative">
               <input
                 type="password"
                 name="password"
                 id="password"
                 value={form.password}
                 onChange={handleChange}
-                class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+                className="w-full p-4 text-sm border-gray-200 rounded-lg shadow-sm pe-12"
                 placeholder="Enter password"
               />
 
-              <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
+              <span className="absolute inset-y-0 grid px-4 end-0 place-content-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="size-4 text-gray-400"
+                  className="text-gray-400 size-4"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
                   />
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
                   />
                 </svg>
@@ -111,12 +111,12 @@ const LoginFormComponent = () => {
             </div>
           </div>
 
-          <div class="flex items-center justify-between">
+          <div className="flex items-center justify-between">
             {loading && <div>Loading...</div>}
             {error && <div>{error}</div>}
             <button
               type="submit"
-              class="inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white"
+              className="inline-block px-5 py-3 text-sm font-medium text-white bg-blue-500 rounded-lg"
             >
               Sign in
             </button>

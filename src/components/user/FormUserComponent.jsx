@@ -1,145 +1,95 @@
 import React from "react";
 
-const FormUserComponent = () => {
+const FormUserComponent = ({ isEdit }) => {
   return (
     <>
       <div>
-        <div className="flex justify-between">
-          <div class="max-w-lg text-start mb-8">
-            <h1 class="text-2xl font-bold sm:text-3xl">Tambah User</h1>
+        <div className="relative p-4 overflow-x-auto bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+          <div className="flex flex-wrap items-center mb-4 flex-column md:flex-row">
+            <div className="flex justify-between">
+              <div className="max-w-lg mb-8 text-start">
+                <h1 className="text-2xl font-bold sm:text-3xl">
+                  {isEdit ? "Edit User" : "Add User"}
+                </h1>
+              </div>
+            </div>
           </div>
-        </div>
-        <div>
-          <form className="w-full max-w-lg">
-            {" "}
-            {/* Tambahkan form */}
-            <div className="flex flex-wrap mb-6 -mx-3">
-              <div className="w-full px-3 mb-6 md:w-1/2 md:mb-0">
-                <label
-                  className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-                  htmlFor="grid-first-name"
-                >
-                  Nama
-                </label>
-                <input
-                  className="block w-full px-4 py-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
-                  id="grid-first-name"
-                  type="text"
-                  placeholder="Jane"
-                />
-              </div>
-              <div className="w-full px-3 md:w-1/2">
-                <label
-                  className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-                  htmlFor="grid-last-name"
-                >
-                  Title
-                </label>
-                <input
-                  className="block w-full px-4 py-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
-                  id="grid-last-name"
-                  type="text"
-                  placeholder="Doe"
-                />
-              </div>
+
+          <form>
+            <div className="mb-6">
+              <label
+                htmlFor="title"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Title
+              </label>
+              <input
+                type="title"
+                id="title"
+                name="title"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                required
+              />
             </div>
-            <div className="flex flex-wrap mb-6 -mx-3">
-              <div className="w-full px-3">
-                <label
-                  className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-                  htmlFor="grid-password"
-                >
-                  Email
-                </label>
-                <input
-                  className="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
-                  id="grid-password"
-                  type="email"
-                  placeholder="********"
-                />
-              </div>
+            <div className="mb-6">
+              <label
+                htmlFor="date"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Date
+              </label>
+              <input
+                type="date"
+                id="date"
+                name="date"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                required
+              />
             </div>
-            <div className="flex flex-wrap mb-6 -mx-3">
-              <div className="w-full px-3">
-                <label
-                  className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-                  htmlFor="grid-password"
-                >
-                  Photo
-                </label>
-                <input
-                  className="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
-                  id="grid-password"
-                  type="text"
-                  placeholder="https://example.com/photo.jpg"
-                />
-              </div>
+            <div className="mb-6">
+              <label
+                htmlFor="content"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Content
+              </label>
+              <textarea
+                id="content"
+                name="content"
+                required
+                rows="4"
+                className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              ></textarea>
             </div>
-            <div className="flex flex-wrap mb-6 -mx-3">
-              <div className="w-full px-3 mb-6 md:w-1/2 md:mb-0">
-                <label
-                  className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-                  htmlFor="grid-first-name"
-                >
-                  Linkedin URL
-                </label>
-                <input
-                  className="block w-full px-4 py-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
-                  id="grid-first-name"
-                  type="text"
-                  placeholder="https://linkedin.com/in/username"
-                />
-              </div>
-              <div className="w-full px-3 md:w-1/2">
-                <label
-                  className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-                  htmlFor="grid-last-name"
-                >
-                  Instagram URL
-                </label>
-                <input
-                  className="block w-full px-4 py-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
-                  id="grid-last-name"
-                  type="file"
-                  placeholder="https://instagram.com/username"
-                />
-              </div>
+
+            <div className="mb-6">
+              <label
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                htmlFor="image"
+              >
+                Upload Image
+              </label>
+              <input
+                className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                aria-describedby="image_help"
+                id="image"
+                name="image"
+                type="file"
+                accept=".jpg, .jpeg, .png"
+              />
+              <p
+                className="mt-1 text-sm text-gray-500 dark:text-gray-300"
+                id="image_help"
+              >
+                JPEG, JPG or PNG
+              </p>
             </div>
-            <div className="flex flex-wrap mb-6 -mx-3">
-              <div className="w-full px-3 mb-6 md:w-1/2 md:mb-0">
-                <label
-                  className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-                  htmlFor="grid-first-name"
-                >
-                  Username
-                </label>
-                <input
-                  className="block w-full px-4 py-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
-                  id="grid-first-name"
-                  type="text"
-                  placeholder="username"
-                />
-              </div>
-              <div className="w-full px-3 md:w-1/2">
-                <label
-                  className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-                  htmlFor="grid-last-name"
-                >
-                  Password
-                </label>
-                <input
-                  className="block w-full px-4 py-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
-                  id="grid-last-name"
-                  type="password"
-                  placeholder="********"
-                />
-              </div>
-            </div>
-            <button // Tambahkan tombol submit
-              className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"
-              type="submit" // Ubah type menjadi submit
+
+            <button
+              type="submit"
+              className="text-white  bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
-              Simpan
+              {isEdit ? "Edit Portfolio" : "Add Portfolio"}
             </button>
           </form>
         </div>

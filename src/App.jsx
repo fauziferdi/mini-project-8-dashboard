@@ -13,6 +13,7 @@ import BlogPage from "./pages/BlogPage";
 import TestimonialPage from "./pages/TestimonialPage";
 import LoginFormComponent from "./components/LoginFormComponent";
 import { useSelector } from "react-redux";
+import "flowbite";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -33,11 +34,11 @@ function App() {
     <Router>
       <div className="flex flex-col items-center justify-center min-h-screen">
         {isAuthenticated ? (
-          <div className="grid grid-cols-[230px,1fr] gap-4 w-full max-w-7xl mx-auto">
+          <div className="grid grid-cols-[230px,1fr] gap-4 w-full  mx-auto">
             <div className="sticky top-0">
               <SidebarComponent />
             </div>
-            <div className="container pt-10 pr-5">
+            <div className="container p-10 mx-auto">
               <Routes>
                 <Route
                   path="/"
@@ -88,7 +89,7 @@ function App() {
                   }
                 />
                 <Route
-                  path="/portofolio/:id"
+                  path="/portofolio/add"
                   element={
                     <PrivateRoute>
                       <PortofolioPage />
@@ -96,7 +97,23 @@ function App() {
                   }
                 />
                 <Route
-                  path="/blog/:id"
+                  path="/portofolio/edit/:id"
+                  element={
+                    <PrivateRoute>
+                      <PortofolioPage />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/blog/add"
+                  element={
+                    <PrivateRoute>
+                      <BlogPage />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/blog/edit/:id"
                   element={
                     <PrivateRoute>
                       <BlogPage />
@@ -112,7 +129,31 @@ function App() {
                   }
                 />
                 <Route
-                  path="/testimonial/:id"
+                  path="/user/edit/:id"
+                  element={
+                    <PrivateRoute>
+                      <UserPage />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/user/add"
+                  element={
+                    <PrivateRoute>
+                      <UserPage />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/testimonial/add"
+                  element={
+                    <PrivateRoute>
+                      <TestimonialPage />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="/testimonial/edit/:id"
                   element={
                     <PrivateRoute>
                       <TestimonialPage />
