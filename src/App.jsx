@@ -2,7 +2,10 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import DashboardPage from "./pages/DashboardPage";
 import SidebarComponent from "./components/SidebarComponent";
-import FormsPage from "./pages/FormsPage";
+import PortofolioPage from "./pages/PortofolioPage";
+import UserPage from "./pages/UserPage";
+import BlogPage from "./pages/BlogPage";
+import TestimonialPage from "./pages/TestimonialPage";
 
 function App() {
   return (
@@ -11,10 +14,18 @@ function App() {
         <div className="sticky top-0">
           <SidebarComponent />
         </div>
-        <div className="container mx-auto pt-10">
+        <div className="container pt-10 pr-5 mx-auto">
           <Routes>
             <Route path="/" element={<DashboardPage />} />
-            <Route path="/forms" element={<FormsPage />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/portofolio" element={<PortofolioPage />} />
+            <Route path="/blog" element={<ListBlogComponent />} />
+            <Route path="/user" element={<UserPage />} />
+            <Route path="/testimonial" element={<TestimonialPage />} />
+            <Route path="/portofolio/:id" element={<PortofolioPage />} />
+            <Route path="/blog/:id" element={<BlogPage />} />
+            <Route path="/user/:id" element={<UserPage />} />
+            <Route path="/testimonial/:id" element={<TestimonialPage />} />
           </Routes>
         </div>
       </div>
