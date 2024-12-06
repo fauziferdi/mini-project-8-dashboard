@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import TitleComponent from "../TitleComponent";
+
 import { MdEdit } from "react-icons/md";
 import { FaTrash } from "react-icons/fa";
 import { fetchAllUsers } from "../../redux/slices/UserSlice";

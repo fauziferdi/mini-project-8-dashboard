@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import TitleComponent from "../TitleComponent";
 import { MdEdit } from "react-icons/md";
 import { FaTrash } from "react-icons/fa";
 import { fetchAllTestimonial } from "../../redux/slices/TestimonialSlice";

@@ -19,7 +19,7 @@ function App() {
             <Route path="/" element={<DashboardPage />} />
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/portofolio" element={<PortofolioPage />} />
-            <Route path="/blog" element={<ListBlogComponent />} />
+            <Route path="/blog" element={<BlogPage />} />
             <Route path="/user" element={<UserPage />} />
             <Route path="/testimonial" element={<TestimonialPage />} />
             <Route path="/portofolio/:id" element={<PortofolioPage />} />
