@@ -4,7 +4,7 @@ import axios from "axios";
 const api = import.meta.env.VITE_API_URL;
 
 export const fetchAllTestimonial = createAsyncThunk(
-  "testimonial/fetchAllTestimonial", // Ubah nama action type
+  "testimonial/fetchAllTestimonial",
   async () => {
     const token = localStorage.getItem("token");
     const response = await axios.get(`${api}/testimonial`, {
@@ -18,7 +18,6 @@ export const fetchAllTestimonial = createAsyncThunk(
 );
 
 export const addTestimonial = createAsyncThunk(
-  // Tambahkan action creator untuk menambah testimonial
   "testimonial/addTestimonial",
   async (data) => {
     const token = localStorage.getItem("token");
@@ -32,7 +31,6 @@ export const addTestimonial = createAsyncThunk(
 );
 
 export const deleteTestimonial = createAsyncThunk(
-  // Tambahkan action creator untuk menghapus testimonial
   "testimonial/deleteTestimonial",
   async (id) => {
     const token = localStorage.getItem("token");
@@ -46,7 +44,6 @@ export const deleteTestimonial = createAsyncThunk(
 );
 
 export const fetchTestimonialById = createAsyncThunk(
-  // Tambahkan action creator untuk mengambil testimonial berdasarkan ID
   "testimonial/fetchTestimonialById",
   async (id) => {
     const token = localStorage.getItem("token");
@@ -60,10 +57,9 @@ export const fetchTestimonialById = createAsyncThunk(
 );
 
 export const updateTestimonial = createAsyncThunk(
-  // Tambahkan action creator untuk mengupdate testimonial
   "testimonial/updateTestimonial",
   async ({ id, data }) => {
-    const token = localStorage.getItem("token"); // Perbaiki: Gunakan localStorage.getItem()
+    const token = localStorage.getItem("token");
     const response = await axios.put(`${api}/testimonial/${id}`, data, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -75,7 +71,7 @@ export const updateTestimonial = createAsyncThunk(
 
 const initialState = {
   testimonials: [],
-  testimonial: {}, // Tambahkan state untuk menyimpan detail testimonial
+  testimonial: {},
   loading: false,
   error: null,
 };

@@ -13,6 +13,7 @@ const FormPortofolioComponent = ({ isEdit }) => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const { portofolio } = useSelector((state) => state.portofolios);
 
   const { form, handleChange, handleFileChange, setForm } = useForm({
